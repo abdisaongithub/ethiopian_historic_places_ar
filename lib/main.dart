@@ -1,14 +1,13 @@
-import 'package:camera/camera.dart';
-import 'package:ethiopian_historic_places_ar/screens/camera_screen.dart';
+import 'package:ethiopian_historic_places_ar/screens/exercise_screen.dart';
 import 'package:ethiopian_historic_places_ar/screens/landing_screen.dart';
 import 'package:ethiopian_historic_places_ar/screens/model_viewer_screen.dart';
 import 'package:flutter/material.dart';
 
-late List<CameraDescription> cameras;
+// late List<CameraDescription> cameras;
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  cameras = await availableCameras();
+  // cameras = await availableCameras();
 
   runApp(const MyApp());
 }
@@ -24,11 +23,13 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
+      themeMode: ThemeMode.dark,
       initialRoute: LandingScreen.id,
       routes: {
         LandingScreen.id: (context) => const LandingScreen(),
-        CameraScreen.id: (context) => const CameraScreen(),
+        // CameraScreen.id: (context) => const CameraScreen(),
         ModelViewerScreen.id: (context) => const ModelViewerScreen(),
+        ExerciseScreen.id: (context) => const ExerciseScreen(),
       },
     );
   }

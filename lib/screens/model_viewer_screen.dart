@@ -14,6 +14,7 @@ class _ModelViewerScreenState extends State<ModelViewerScreen> {
   FlutterTts flutterTts = FlutterTts();
 
   playTTS() async {
+    await flutterTts.setVoice({"name": "Karen", "locale": "en-AU"});
     await flutterTts.speak('Hello, How are you? I am fine, and Thank you.');
   }
 
@@ -45,7 +46,7 @@ class _ModelViewerScreenState extends State<ModelViewerScreen> {
           arModes: const ['scene-viewer', 'webxr', 'quick-look'],
           autoRotate: true,
           cameraControls: true,
-          arScale: 'auto',
+          arScale: ArScale.auto,
         ),
       ),
     );

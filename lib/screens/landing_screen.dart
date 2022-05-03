@@ -1,3 +1,4 @@
+import 'package:ethiopian_historic_places_ar/screens/exercise_screen.dart';
 import 'package:ethiopian_historic_places_ar/screens/model_viewer_screen.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -14,7 +15,7 @@ class _LandingScreenState extends State<LandingScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(
+      body: SizedBox(
         height: MediaQuery.of(context).size.height,
         width: MediaQuery.of(context).size.width,
         child: Column(
@@ -23,7 +24,10 @@ class _LandingScreenState extends State<LandingScreen> {
           children: [
             MaterialButton(
               onPressed: () {
-                // Navigator.pushNamed(context, CameraScreen.id);
+                Navigator.pushNamed(
+                  context,
+                  ExerciseScreen.id,
+                );
                 if (kDebugMode) {
                   print('ToCameraScreen');
                 }
