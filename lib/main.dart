@@ -5,8 +5,8 @@ import 'package:flutter/material.dart';
 
 // late List<CameraDescription> cameras;
 
-Future<void> main() async {
-  WidgetsFlutterBinding.ensureInitialized();
+void main() {
+  // WidgetsFlutterBinding.ensureInitialized();
   // cameras = await availableCameras();
 
   runApp(const MyApp());
@@ -23,7 +23,6 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      themeMode: ThemeMode.dark,
       initialRoute: LandingScreen.id,
       routes: {
         LandingScreen.id: (context) => const LandingScreen(),

@@ -43,7 +43,7 @@ class _LandingScreenState extends State<LandingScreen> {
                   ModelViewerScreen.id,
                   arguments: ModelViewerScreenArgument(
                     alt: "",
-                    source: 'assets/ar/adama_texture.glb',
+                    source: 'assets/ar/adama.glb',
                   ),
                 );
               },
