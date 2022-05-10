@@ -31,7 +31,6 @@ class _ModelViewerScreenState extends State<ModelViewerScreen> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     _flutterSecureStorage = const FlutterSecureStorage();
     _player = AudioPlayer(mode: PlayerMode.LOW_LATENCY);
@@ -39,7 +38,6 @@ class _ModelViewerScreenState extends State<ModelViewerScreen> {
 
   @override
   void dispose() {
-    // TODO: implement dispose
     super.dispose();
     _player.dispose();
   }
@@ -56,7 +54,7 @@ class _ModelViewerScreenState extends State<ModelViewerScreen> {
           color: Colors.blueGrey,
         ),
         child: ModelViewer(
-          backgroundColor: Colors.blueGrey,
+          backgroundColor: Colors.blue,
           // src: 'https://modelviewer.dev/shared-assets/models/Astronaut.glb',
           src: args.source,
           alt: args.alt,

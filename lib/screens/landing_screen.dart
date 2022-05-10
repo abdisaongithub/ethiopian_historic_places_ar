@@ -1,8 +1,11 @@
+import 'package:ethiopian_historic_places_ar/screens/all_models_screen.dart';
 import 'package:ethiopian_historic_places_ar/screens/exercise_screen.dart';
-import 'package:ethiopian_historic_places_ar/screens/model_viewer_screen.dart';
+import 'package:ethiopian_historic_places_ar/screens/help_screen.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:new_im_animations/im_animations.dart';
 
 class LandingScreen extends StatefulWidget {
@@ -15,16 +18,23 @@ class LandingScreen extends StatefulWidget {
 
 class _LandingScreenState extends State<LandingScreen> {
   late FlutterSecureStorage _flutterSecureStorage;
+  late String? lang;
+
   @override
   void initState() {
-    // TODO: implement initState
-    super.initState();
     _flutterSecureStorage = const FlutterSecureStorage();
+    getLang();
+    super.initState();
+  }
+
+  void getLang() async {
+    lang = await _flutterSecureStorage.read(key: 'lang');
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.black,
       body: Stack(
         children: [
           Positioned.fill(
@@ -40,65 +50,58 @@ class _LandingScreenState extends State<LandingScreen> {
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                MaterialButton(
-                  onPressed: () {
+                LandingScreenButton(
+                  label: 'Scan',
+                  iconData: Icons.search,
+                  onTap: () {
                     Navigator.pushNamed(
                       context,
-                      ModelViewerScreen.id,
-                      arguments: ModelViewerScreenArgument(
-                        alt: "",
-                        source: 'assets/ar/adama.glb',
-                      ),
+                      ExerciseScreen.id,
                     );
                   },
-                  height: 40,
-                  color: Colors.teal,
-                  child: const Text('Adama'),
                 ),
-                MaterialButton(
-                  onPressed: () {
+                LandingScreenButton(
+                  label: 'All Models',
+                  iconData: FontAwesomeIcons.monument,
+                  onTap: () {
                     Navigator.pushNamed(
                       context,
-                      ModelViewerScreen.id,
-                      arguments: ModelViewerScreenArgument(
-                        alt: "",
-                        source: 'assets/ar/axum.glb',
-                      ),
+                      AllModelsScreen.id,
                     );
                   },
-                  height: 40,
-                  color: Colors.teal,
-                  child: const Text('Axum'),
                 ),
-                MaterialButton(
-                  onPressed: () {
-                    Navigator.pushNamed(
-                      context,
-                      ModelViewerScreen.id,
-                      arguments: ModelViewerScreenArgument(
-                        alt: "",
-                        source: 'assets/ar/ja.glb',
-                      ),
-                    );
+                LandingScreenButton(
+                  label: 'Languages',
+                  iconData: Icons.language,
+                  onTap: () {
+                    // Navigator.pushNamed(
+                    //   context,
+                    //   ModelViewerScreen.id,
+                    //   arguments: ModelViewerScreenArgument(
+                    //     alt: "",
+                    //     source: 'assets/ar/adama.glb',
+                    //   ),
+                    // );
                   },
-                  height: 40,
-                  color: Colors.teal,
-                  child: const Text('Sheger'),
                 ),
-                MaterialButton(
-                  onPressed: () {
+                LandingScreenButton(
+                  label: 'Help',
+                  iconData: FontAwesomeIcons.question,
+                  onTap: () {
                     Navigator.pushNamed(
                       context,
-                      ModelViewerScreen.id,
-                      arguments: ModelViewerScreenArgument(
-                        alt: "",
-                        source: 'assets/ar/Astronaut.glb',
-                      ),
+                      HelpScreen.id,
                     );
                   },
-                  height: 40,
-                  color: Colors.teal,
-                  child: const Text('SampleModel - for reference'),
+                ),
+                LandingScreenButton(
+                  label: 'Quit',
+                  iconData: Icons.logout,
+                  onTap: () {
+                    SystemNavigator.pop(
+                      animated: true,
+                    );
+                  },
                 ),
               ],
             ),
@@ -139,6 +142,72 @@ class _LandingScreenState extends State<LandingScreen> {
             print('DetectionScreen');
           }
         },
+      ),
+    );
+  }
+}
+
+class LandingScreenButton extends StatelessWidget {
+  const LandingScreenButton({
+    Key? key,
+    required this.label,
+    required this.iconData,
+    required this.onTap,
+  }) : super(key: key);
+  final String label;
+  final IconData iconData;
+  final VoidCallback onTap;
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: onTap,
+      child: Container(
+        decoration: BoxDecoration(
+          border: Border.all(
+            color: Colors.white.withOpacity(0.75),
+            width: 2,
+            style: BorderStyle.solid,
+          ),
+          color: Colors.white.withOpacity(0.5),
+          borderRadius: BorderRadius.circular(8),
+        ),
+        height: 80,
+        width: MediaQuery.of(context).size.width * 0.8,
+        padding: const EdgeInsets.symmetric(
+          horizontal: 8,
+        ),
+        margin: const EdgeInsets.symmetric(
+          vertical: 8,
+        ),
+        child: Row(
+          children: [
+            Container(
+              decoration: BoxDecoration(
+                color: Colors.blue,
+                borderRadius: BorderRadius.circular(8),
+              ),
+              width: 50,
+              height: 50,
+              margin: const EdgeInsets.all(4),
+              child: Icon(
+                iconData,
+                color: Colors.white,
+                size: 30,
+              ),
+            ),
+            const SizedBox(
+              width: 8,
+            ),
+            Text(
+              label,
+              style: const TextStyle(
+                color: Colors.white,
+                fontSize: 20,
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }

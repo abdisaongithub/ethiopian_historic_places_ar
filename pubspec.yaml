@@ -43,6 +43,7 @@ dependencies:
   new_im_animations: ^0.1.1
   flutter_secure_storage: ^5.0.2
   audioplayers: ^0.20.1
+  font_awesome_flutter: ^10.1.0
 
 
 dev_dependencies:

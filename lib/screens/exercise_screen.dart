@@ -62,6 +62,7 @@ class _ExerciseScreenState extends State<ExerciseScreen> {
             source: 'assets/ar/adama.glb',
           ),
         );
+        return;
       }
       if (pred.label == 'axum') {
         Navigator.popAndPushNamed(
@@ -72,6 +73,7 @@ class _ExerciseScreenState extends State<ExerciseScreen> {
             source: 'assets/ar/axum.glb',
           ),
         );
+        return;
       }
       if (pred.label == 'lalibela') {
         Navigator.popAndPushNamed(
@@ -82,6 +84,7 @@ class _ExerciseScreenState extends State<ExerciseScreen> {
             source: 'assets/ar/lalibel.glb',
           ),
         );
+        return;
       }
     }
     setState(() {

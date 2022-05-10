@@ -1,4 +1,6 @@
+import 'package:ethiopian_historic_places_ar/screens/all_models_screen.dart';
 import 'package:ethiopian_historic_places_ar/screens/exercise_screen.dart';
+import 'package:ethiopian_historic_places_ar/screens/help_screen.dart';
 import 'package:ethiopian_historic_places_ar/screens/landing_screen.dart';
 import 'package:ethiopian_historic_places_ar/screens/model_viewer_screen.dart';
 import 'package:flutter/material.dart';
@@ -18,7 +20,8 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      // title: 'Flutter Demo',
+      debugShowCheckedModeBanner: false,
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
@@ -28,6 +31,8 @@ class MyApp extends StatelessWidget {
         // CameraScreen.id: (context) => const CameraScreen(),
         ModelViewerScreen.id: (context) => const ModelViewerScreen(),
         ExerciseScreen.id: (context) => const ExerciseScreen(),
+        HelpScreen.id: (context) => const HelpScreen(),
+        AllModelsScreen.id: (context) => const AllModelsScreen(),
       },
     );
   }
