@@ -2,7 +2,7 @@
     package="com.example.ethiopian_historic_places_ar">
     <uses-permission android:name="permission.android.INTERNET" />
    <application
-        android:label="ethiopian_historic_places_ar"
+        android:label="Ethiopian Historic Places - Beta"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher"
        android:usesCleartextTraffic="true">
