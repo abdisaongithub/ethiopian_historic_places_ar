@@ -74,14 +74,59 @@ class _LandingScreenState extends State<LandingScreen> {
                   label: 'Languages',
                   iconData: Icons.language,
                   onTap: () {
-                    // Navigator.pushNamed(
-                    //   context,
-                    //   ModelViewerScreen.id,
-                    //   arguments: ModelViewerScreenArgument(
-                    //     alt: "",
-                    //     source: 'assets/ar/adama.glb',
-                    //   ),
-                    // );
+                    showModalBottomSheet(
+                      context: context,
+                      builder: (BuildContext context) {
+                        return StatefulBuilder(
+                          builder: (BuildContext context,
+                              void Function(void Function()) setState) {
+                            return Container(
+                              height: 150,
+                              color: Colors.indigo,
+                              child: Center(
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  mainAxisSize: MainAxisSize.min,
+                                  children: <Widget>[
+                                    const Text(
+                                      'Choose Language',
+                                      style: TextStyle(
+                                        color: Colors.white70,
+                                        fontSize: 22,
+                                      ),
+                                    ),
+                                    const SizedBox(
+                                      height: 20,
+                                    ),
+                                    Wrap(
+                                      // direction: Axis.horizontal,
+                                      children: [
+                                        LanguageButton(
+                                          onTap: () {},
+                                          label: 'Afaan Oromoo',
+                                        ),
+                                        LanguageButton(
+                                          onTap: () {},
+                                          label: 'Amharic',
+                                        ),
+                                        LanguageButton(
+                                          onTap: () {},
+                                          label: 'English',
+                                        ),
+                                        LanguageButton(
+                                          onTap: () {},
+                                          label: 'Tigre',
+                                        ),
+                                      ],
+                                    )
+                                  ],
+                                ),
+                              ),
+                            );
+                          },
+                        );
+                      },
+                    );
                   },
                 ),
                 LandingScreenButton(
@@ -142,6 +187,42 @@ class _LandingScreenState extends State<LandingScreen> {
             print('DetectionScreen');
           }
         },
+      ),
+    );
+  }
+}
+
+class LanguageButton extends StatelessWidget {
+  const LanguageButton({
+    Key? key,
+    required this.label,
+    required this.onTap,
+  }) : super(key: key);
+
+  final String label;
+  final VoidCallback onTap;
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: () {},
+      child: Container(
+        padding: const EdgeInsets.all(6),
+        margin: const EdgeInsets.all(6),
+        decoration: BoxDecoration(
+          border: Border.all(
+            color: Colors.white,
+            width: 2,
+          ),
+          borderRadius: BorderRadius.circular(5),
+        ),
+        child: Text(
+          label,
+          style: const TextStyle(
+            color: Colors.white70,
+            fontSize: 16,
+          ),
+        ),
       ),
     );
   }
