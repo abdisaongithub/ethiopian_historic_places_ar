@@ -3,6 +3,7 @@ import 'package:ethiopian_historic_places_ar/screens/exercise_screen.dart';
 import 'package:ethiopian_historic_places_ar/screens/help_screen.dart';
 import 'package:ethiopian_historic_places_ar/screens/landing_screen.dart';
 import 'package:ethiopian_historic_places_ar/screens/model_viewer_screen.dart';
+import 'package:ethiopian_historic_places_ar/screens/splash_screen.dart';
 import 'package:flutter/material.dart';
 
 // late List<CameraDescription> cameras;
@@ -25,7 +26,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      initialRoute: LandingScreen.id,
+      initialRoute: SplashScreen.id,
       routes: {
         LandingScreen.id: (context) => const LandingScreen(),
         // CameraScreen.id: (context) => const CameraScreen(),
@@ -33,6 +34,7 @@ class MyApp extends StatelessWidget {
         ExerciseScreen.id: (context) => const ExerciseScreen(),
         HelpScreen.id: (context) => const HelpScreen(),
         AllModelsScreen.id: (context) => const AllModelsScreen(),
+        SplashScreen.id: (context) => const SplashScreen(),
       },
     );
   }
