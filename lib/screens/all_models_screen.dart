@@ -1,5 +1,4 @@
 import 'package:ethiopian_historic_places_ar/screens/model_viewer_screen.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 class AllModelsScreen extends StatefulWidget {

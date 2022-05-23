@@ -1,14 +1,15 @@
+import 'package:ethiopian_historic_places_ar/language_provider.dart';
 import 'package:ethiopian_historic_places_ar/screens/all_models_screen.dart';
 import 'package:ethiopian_historic_places_ar/screens/exercise_screen.dart';
 import 'package:ethiopian_historic_places_ar/screens/help_screen.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:new_im_animations/im_animations.dart';
 
-class LandingScreen extends StatefulWidget {
+class LandingScreen extends ConsumerStatefulWidget {
   static String id = 'LandingScreen';
   const LandingScreen({Key? key}) : super(key: key);
 
@@ -16,23 +17,20 @@ class LandingScreen extends StatefulWidget {
   _LandingScreenState createState() => _LandingScreenState();
 }
 
-class _LandingScreenState extends State<LandingScreen> {
-  late FlutterSecureStorage _flutterSecureStorage;
-  late String? lang;
+class _LandingScreenState extends ConsumerState<LandingScreen> {
+  // late FlutterSecureStorage _flutterSecureStorage;
+  // late String? lang;
 
   @override
   void initState() {
-    _flutterSecureStorage = const FlutterSecureStorage();
-    getLang();
+    // _flutterSecureStorage = const FlutterSecureStorage();
     super.initState();
-  }
-
-  void getLang() async {
-    lang = await _flutterSecureStorage.read(key: 'lang');
   }
 
   @override
   Widget build(BuildContext context) {
+    var words = ref.watch(languageProvider);
+
     return Scaffold(
       backgroundColor: Colors.black,
       body: Stack(
@@ -51,7 +49,7 @@ class _LandingScreenState extends State<LandingScreen> {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 LandingScreenButton(
-                  label: 'Scan',
+                  label: words[0],
                   iconData: Icons.search,
                   onTap: () {
                     Navigator.pushNamed(
@@ -61,7 +59,7 @@ class _LandingScreenState extends State<LandingScreen> {
                   },
                 ),
                 LandingScreenButton(
-                  label: 'All Models',
+                  label: words[1],
                   iconData: FontAwesomeIcons.monument,
                   onTap: () {
                     Navigator.pushNamed(
@@ -71,14 +69,14 @@ class _LandingScreenState extends State<LandingScreen> {
                   },
                 ),
                 LandingScreenButton(
-                  label: 'Languages',
+                  label: words[2],
                   iconData: Icons.language,
                   onTap: () {
                     showModalBottomSheet(
                       context: context,
                       builder: (BuildContext context) {
                         return StatefulBuilder(
-                          builder: (BuildContext context,
+                          builder: (BuildContext localContext,
                               void Function(void Function()) setState) {
                             return Container(
                               height: 150,
@@ -100,22 +98,59 @@ class _LandingScreenState extends State<LandingScreen> {
                                     ),
                                     Wrap(
                                       // direction: Axis.horizontal,
+                                      alignment: WrapAlignment.center,
                                       children: [
                                         LanguageButton(
-                                          onTap: () {},
+                                          onTap: () {
+                                            // _flutterSecureStorage.write(
+                                            //   key: 'lang',
+                                            //   value: 'or',
+                                            // );
+                                            words = ref
+                                                .read(languageProvider.notifier)
+                                                .setLanguage('or');
+                                            Navigator.pop(context);
+                                          },
                                           label: 'Afaan Oromoo',
                                         ),
                                         LanguageButton(
-                                          onTap: () {},
+                                          onTap: () {
+                                            // _flutterSecureStorage.write(
+                                            //   key: 'lang',
+                                            //   value: 'am',
+                                            // );
+                                            words = ref
+                                                .read(languageProvider.notifier)
+                                                .setLanguage('am');
+                                            Navigator.pop(context);
+                                          },
                                           label: 'Amharic',
                                         ),
                                         LanguageButton(
-                                          onTap: () {},
+                                          onTap: () {
+                                            // _flutterSecureStorage.write(
+                                            //   key: 'lang',
+                                            //   value: 'en',
+                                            // );
+                                            words = ref
+                                                .read(languageProvider.notifier)
+                                                .setLanguage('en');
+                                            Navigator.pop(context);
+                                          },
                                           label: 'English',
                                         ),
                                         LanguageButton(
-                                          onTap: () {},
-                                          label: 'Tigre',
+                                          onTap: () {
+                                            // _flutterSecureStorage.write(
+                                            //   key: 'lang',
+                                            //   value: 'tg',
+                                            // );
+                                            words = ref
+                                                .read(languageProvider.notifier)
+                                                .setLanguage('tg');
+                                            Navigator.pop(context);
+                                          },
+                                          label: 'Tigrigna',
                                         ),
                                       ],
                                     )
@@ -130,7 +165,7 @@ class _LandingScreenState extends State<LandingScreen> {
                   },
                 ),
                 LandingScreenButton(
-                  label: 'Help',
+                  label: words[3],
                   iconData: FontAwesomeIcons.question,
                   onTap: () {
                     Navigator.pushNamed(
@@ -140,7 +175,7 @@ class _LandingScreenState extends State<LandingScreen> {
                   },
                 ),
                 LandingScreenButton(
-                  label: 'Quit',
+                  label: words[4],
                   iconData: Icons.logout,
                   onTap: () {
                     SystemNavigator.pop(
@@ -205,7 +240,7 @@ class LanguageButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () {},
+      onTap: onTap,
       child: Container(
         padding: const EdgeInsets.all(6),
         margin: const EdgeInsets.all(6),

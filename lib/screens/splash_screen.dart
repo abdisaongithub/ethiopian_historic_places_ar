@@ -61,19 +61,19 @@ class _SplashScreenState extends State<SplashScreen> {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               crossAxisAlignment: CrossAxisAlignment.end,
-              children: [
-                const Text(
-                  'In Collaboration With',
-                  style: TextStyle(),
-                ),
-                SizedBox(
-                  height: 70,
-                  // width: MediaQuery.of(context).size.width - 30,
-                  child: Image.asset(
-                    'assets/img/or.jpeg',
-                    fit: BoxFit.cover,
-                  ),
-                ),
+              children: const [
+                // const Text(
+                //   'In Collaboration With',
+                //   style: TextStyle(),
+                // ),
+                // SizedBox(
+                //   height: 70,
+                //   // width: MediaQuery.of(context).size.width - 30,
+                //   child: Image.asset(
+                //     'assets/img/or.jpeg',
+                //     fit: BoxFit.cover,
+                //   ),
+                // ),
               ],
             ),
             const SizedBox(

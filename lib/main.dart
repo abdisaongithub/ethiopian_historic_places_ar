@@ -5,6 +5,7 @@ import 'package:ethiopian_historic_places_ar/screens/landing_screen.dart';
 import 'package:ethiopian_historic_places_ar/screens/model_viewer_screen.dart';
 import 'package:ethiopian_historic_places_ar/screens/splash_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 // late List<CameraDescription> cameras;
 
@@ -12,7 +13,9 @@ void main() {
   // WidgetsFlutterBinding.ensureInitialized();
   // cameras = await availableCameras();
 
-  runApp(const MyApp());
+  runApp(const ProviderScope(
+    child: MyApp(),
+  ));
 }
 
 class MyApp extends StatelessWidget {
