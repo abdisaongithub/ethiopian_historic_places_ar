@@ -12,10 +12,21 @@ Install ethiopian_historic_places_ar on your computer
 Requirement:
     - installed and configured flutter development on your choosing of platform/operating system
 
+LINUX/MAC
+
 ```bash
+  ./install.sh
   flutter pub get
   flutter pub run
 ```
+
+WINDOWS
+```bash
+  ./install.bat
+  flutter pub get
+  flutter pub run
+```
+
 ## Acknowledgements
 
  - [Soliyana Tesfaye](https://github.com/SoliBTS)
